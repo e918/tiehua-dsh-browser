@@ -1,0 +1,7 @@
+node_modules/
+lib/
+artifacts/*
+!artifacts/.gitkeep
+coverage/
+.runtime/
+*.log

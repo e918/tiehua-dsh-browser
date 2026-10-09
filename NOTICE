@@ -1,0 +1,9 @@
+Tiehua DSH Browser includes and adapts code from huashu-chrome 1.2.1.
+Upstream: https://github.com/alchaincyf/huashu-chrome
+Source commit: c3d9345284cf3ab5ee7a4eb11685f2f09c0876f0
+Copyright (c) 2026 花叔 (alchaincyf). Licensed under MIT (see LICENSE).
+
+Reused components: Chrome DOM/CDP execution, page observation, script validation,
+tool parameter descriptions, and bundled site notes. The DSH plugin runtime,
+local connection manager, native tool adapter and settings UI are new.
+There is no MCP server or MCP client in Tiehua's execution path.

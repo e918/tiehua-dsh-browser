@@ -1,0 +1,6 @@
+- insert:
+    - id: tiehua-browser
+      name: tiehua-dsh-browser
+      config:
+        enabled: true
+        port: 17891

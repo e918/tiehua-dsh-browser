@@ -1,0 +1,43 @@
+{
+  "name": "tiehua-dsh-browser",
+  "displayName": "铁花dsh浏览器助手",
+  "version": "0.1.0-alpha.11",
+  "description": "DSH 原生浏览器工具、会话绑定和 Chrome 扩展。",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22.19" },
+  "main": "lib/index.js",
+  "exports": { ".": "./lib/index.js", "./client": "./lib/client.js", "./package.json": "./package.json", "./cordis.patch.yml": "./cordis.patch.yml" },
+  "files": ["lib", "extension", "docs", "cordis.patch.yml", "README.md", "NOTICE", "LICENSE"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "browser", "tiehua"],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web", "inject": ["@deepseek-ai/dsh-client-ui-settings", "@deepseek-ai/dsh-client-ui-settings-plugins", "@deepseek-ai/dsh-client-locale"] }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "smoke": "node scripts/smoke-build.mjs",
+    "check": "npm run typecheck && npm test && npm run build && npm run smoke",
+    "pack:release": "npm run check && npm pack --pack-destination artifacts"
+  },
+  "dependencies": { "ws": "8.18.3", "@deepseek-ai/schemastery": "3.18.4" },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.4",
+    "@deepseek-ai/dsh-tools": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-host-webserver": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-client-connection": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-settings": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-attachment": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-client-ui-settings": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-client-ui-settings-plugins": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-client-locale": "0.2.0-rc.2",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis-plugin-loader": "1.0.5", "@deepseek-ai/dsh-system-prompt": "0.2.0-rc.2",
+    "@types/node": "^22.0.0", "@types/ws": "^8.5.0", "@types/react": "^18.3.0",
+    "typescript": "^5.9.0", "tsx": "^4.20.0", "esbuild": "^0.25.0", "jsdom": "^26.0.0", "@types/jsdom": "^21.1.0"
+  }
+}
