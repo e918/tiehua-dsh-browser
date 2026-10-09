@@ -4,16 +4,24 @@
 
 **一个 DSH 会话可以操作多个标签页。** 例如在同一段聊天中读取 BI 报表、核对参考文章，再把结果写入公众号编辑器。
 
-当前版本：`0.1.0-alpha.11`。按本机 **DSH 0.2.0-rc.2** 的接口开发。20 项自动化测试及编译产物集成检查通过；尚未在日常 DSH 客户端与实际 Chrome 中完成端到端联调。
+当前版本：`0.1.0-alpha.12`。按本机 **DSH 0.2.0-rc.2** 的接口开发。20 项自动化测试及编译产物集成检查通过；尚未在日常 DSH 客户端与实际 Chrome 中完成端到端联调。
 
 ## 安装
 
 ### 1. 添加 DSH 插件
 
-在 DSH 的插件管理页面选择“添加插件”，在“包名或地址”中填写本地安装包的完整路径，例如：
+在 DSH 的插件管理页面选择“添加插件”，在“包名或地址”中填写 GitHub 仓库地址：
 
 ```text
-D:\projects\tiehua-dsh-browser\artifacts\tiehua-dsh-browser-0.1.0-alpha.11.tgz
+https://github.com/e918/tiehua-dsh-browser
+```
+
+仓库包含已编译的插件运行文件，安装时不需要自行编译。电脑需要能访问 GitHub 和所选的 npm 依赖源；选择“中国大陆镜像源”只影响 npm 依赖，不会代理 GitHub。
+
+也可以填写已下载的 `.tgz` 安装包完整路径，例如：
+
+```text
+D:\projects\tiehua-dsh-browser\artifacts\tiehua-dsh-browser-0.1.0-alpha.12.tgz
 ```
 
 开发时也可以填写已完成构建的项目目录：
@@ -22,7 +30,7 @@ D:\projects\tiehua-dsh-browser\artifacts\tiehua-dsh-browser-0.1.0-alpha.11.tgz
 D:\projects\tiehua-dsh-browser
 ```
 
-此包没有发布到 npm，直接输入包名无法从 npm 安装。安装需要 DSH 能取得 `ws` 等 npm 依赖。本版本声明的 DSH peer dependencies 为 `0.2.0-rc.2`；其他版本需先适配和验证。
+此包没有发布到 npm，不能只填写 `tiehua-dsh-browser`。本版本声明的 DSH peer dependencies 为 `0.2.0-rc.2`；其他版本需先适配和验证。
 
 安装并启用后，在设置的插件配置中打开 **铁花dsh浏览器助手**。页面提供启用开关、端口、页面 JavaScript 执行开关、扩展目录和连接状态。
 
@@ -102,6 +110,8 @@ npm pack --pack-destination artifacts
 ```
 
 `check` 包括 TypeScript 检查、20 项测试、宿主与客户端构建，以及编译产物集成检查。集成检查启动隔离的 Cordis/DSH 工具运行时、本机临时连接端口和模拟扩展，不修改日常 DSH profile。
+
+`lib/` 中的编译产物随源码提交，用于 GitHub 地址直接安装。修改源码后运行 `npm run check`，并将更新后的 `lib/` 一起提交；请勿重新忽略该目录。
 
 目录说明、通信方式和后续任务见 [架构说明](docs/architecture.md)。
 

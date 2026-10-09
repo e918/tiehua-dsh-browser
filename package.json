@@ -1,7 +1,7 @@
 {
   "name": "tiehua-dsh-browser",
   "displayName": "铁花dsh浏览器助手",
-  "version": "0.1.0-alpha.11",
+  "version": "0.1.0-alpha.12",
   "description": "DSH 原生浏览器工具、会话绑定和 Chrome 扩展。",
   "license": "MIT",
   "type": "module",

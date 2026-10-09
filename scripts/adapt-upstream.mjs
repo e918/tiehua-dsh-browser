@@ -119,8 +119,8 @@ fs.writeFileSync('extension/offscreen.js', offscreen);
 const manifest = JSON.parse(read('extension/manifest.json'));
 delete manifest.key; // Separate extension identity and storage from upstream.
 manifest.name = '铁花dsh浏览器助手';
-manifest.version = '0.1.0.11';
-manifest.version_name = '0.1.0-alpha.11';
+manifest.version = '0.1.0.12';
+manifest.version_name = '0.1.0-alpha.12';
 manifest.description = '连接 DeepSeek Harness 原生铁花插件，操作当前浏览器。';
 manifest.action.default_title = '铁花dsh浏览器助手';
 manifest.icons = Object.fromEntries([16, 32, 48, 128].map(size => [size, `icons/tiehua${size}.png`]));
