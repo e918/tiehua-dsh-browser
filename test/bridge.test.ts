@@ -15,7 +15,7 @@ async function extension(bridge: BrowserBridge, id = 'browser-one', legacyToken?
   const ws = new WebSocket(`ws://127.0.0.1:${bridge.port}`, { origin });
   await once(ws, 'open');
   const message = once(ws, 'message');
-  ws.send(JSON.stringify({ type: 'hello', role: 'extension', v: 1, extId, token: legacyToken, instanceId: id, version: '0.1.0-alpha.12' }));
+  ws.send(JSON.stringify({ type: 'hello', role: 'extension', v: 1, extId, token: legacyToken, instanceId: id, version: '0.1.0-alpha.13' }));
   await message;
   return ws;
 }

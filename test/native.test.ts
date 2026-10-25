@@ -19,7 +19,7 @@ function execute(ctx: Context, name: string, args: unknown = {}) {
   return ctx.tools.execute({ name: 'tiehua_browser_' + name, arguments: args, callId: 'call-1' as never,
     agent: { session: { header: { id: 'session-123' } }, options: {} } as never, signal: new AbortController().signal });
 }
-test('all 23 tools register in the actual DSH 0.2.0-rc.2 runtime and validate arguments', async t => {
+test('all 23 tools register in the actual DSH 0.2.1-rc.3 runtime and validate arguments', async t => {
   const ctx = await setup(t);
   const runtime: BrowserRuntime = { config: { enabled: true, port: 17891, allowEval: false, dataDir: '' }, dataDir: '/unused', lastError: '' };
   for (const tool of createTools(ctx, runtime)) ctx.tools.register(tool);

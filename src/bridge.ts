@@ -3,7 +3,7 @@ import type { IncomingMessage } from 'node:http';
 import { WebSocket, WebSocketServer } from 'ws';
 
 export const PROTOCOL = 1;
-export const VERSION = '0.1.0-alpha.12';
+export const VERSION = '0.1.0-alpha.13';
 export class BrowserError extends Error {
   constructor(public code: string, message: string) { super(`${code}: ${message}`); }
 }

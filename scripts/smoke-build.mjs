@@ -48,7 +48,7 @@ try {
   ws = new WebSocket(`ws://127.0.0.1:${runtime.bridge.port}`, { origin: 'chrome-extension://' + 'a'.repeat(32) });
   await once(ws, 'open');
   const welcome = once(ws, 'message');
-  ws.send(JSON.stringify({ type: 'hello', role: 'extension', v: 1, extId: 'a'.repeat(32), instanceId: 'smoke-browser', version: '0.1.0-alpha.12' }));
+  ws.send(JSON.stringify({ type: 'hello', role: 'extension', v: 1, extId: 'a'.repeat(32), instanceId: 'smoke-browser', version: '0.1.0-alpha.13' }));
   assert.equal(JSON.parse((await welcome)[0].toString()).type, 'welcome');
   const commands = [];
   ws.on('message', raw => {
