@@ -10,8 +10,10 @@ function replace(text, before, after) {
   return text.replace(before, after);
 }
 const server = read('src/mcp-server.js');
-fs.writeFileSync('src/vendor/tool-schemas.js', '// MIT: huashu-chrome c3d9345. Parameter metadata only.\n' +
-  server.slice(server.indexOf('const REF ='), server.indexOf('const STRATEGY =')) + '\nexport { TOOLS };\n');
+const toolSchemas = '// MIT: huashu-chrome c3d9345. Parameter metadata only.\n' +
+  server.slice(server.indexOf('const REF ='), server.indexOf('const STRATEGY =')) + '\nexport { TOOLS };\n';
+fs.writeFileSync('src/vendor/tool-schemas.js', toolSchemas
+  .replaceAll('Reload the huashu-chrome extension', 'Reload the Tiehua Chrome extension'));
 const wrap = server.slice(server.indexOf('function wrapUntrusted('), server.indexOf('export async function startMcpServer'));
 const pagination = replace(server.slice(server.indexOf('const pathGet ='), server.indexOf('// 错误不只报')),
   ".join('\\n') + '\\n');", ".join('\\n') + '\\n', { flag: 'wx' });");
@@ -80,6 +82,7 @@ bg = replace(bg, 'const groupTitleOk = (title, sid) => title === GROUP_TITLE || 
 bg = bg.replaceAll('huashu-chrome：', '铁花dsh浏览器助手：')
   .replaceAll("'huashu-chrome'", "'铁花dsh浏览器助手'")
   .replaceAll('huashu-chrome 需要你搭把手', '铁花需要你搭把手')
+  .replaceAll('huashu-chrome/', 'tiehua-dsh-browser/')
   .replaceAll('icons/icon128.png', 'icons/tiehua128.png')
   .replaceAll('Tiehua 设置', '铁花设置');
 fs.writeFileSync('extension/background.js', bg);
@@ -119,8 +122,8 @@ fs.writeFileSync('extension/offscreen.js', offscreen);
 const manifest = JSON.parse(read('extension/manifest.json'));
 delete manifest.key; // Separate extension identity and storage from upstream.
 manifest.name = '铁花dsh浏览器助手';
-manifest.version = '0.1.0.13';
-manifest.version_name = '0.1.0-alpha.13';
+manifest.version = '0.1.0.14';
+manifest.version_name = '0.1.0-alpha.14';
 manifest.description = '连接 DeepSeek Harness 原生铁花插件，操作当前浏览器。';
 manifest.action.default_title = '铁花dsh浏览器助手';
 manifest.icons = Object.fromEntries([16, 32, 48, 128].map(size => [size, `icons/tiehua${size}.png`]));
@@ -129,4 +132,16 @@ manifest.action.default_icon = { 16: 'icons/tiehua16.png', 32: 'icons/tiehua32.p
 bg = fs.readFileSync('extension/background.js', 'utf8').replaceAll('chrome.runtime.getManifest().version', '(chrome.runtime.getManifest().version_name || chrome.runtime.getManifest().version)');
 fs.writeFileSync('extension/background.js', bg);
 fs.writeFileSync('extension/manifest.json', JSON.stringify(manifest, null, 2) + '\n');
+// Brand remaining user-facing extension surfaces (kept out of the MCP upstream path).
+for (const name of ['extension/cdp.js', 'extension/content.js', 'extension/offscreen.html', 'extension/mark.js']) {
+  let text = fs.readFileSync(name, 'utf8');
+  text = text
+    .replaceAll('huashu-chrome 扩展图标', '铁花dsh浏览器助手扩展图标')
+    .replaceAll('huashu-chrome bridge link', '铁花dsh浏览器助手 bridge link')
+    .replaceAll('window.__huashuChrome', 'window.__tiehuaDshBrowser')
+    .replaceAll('「花叔」', '「铁花」')
+    .replaceAll('（花叔定的）', '')
+    .replaceAll('（花叔定的：', '（');
+  fs.writeFileSync(name, text);
+}
 console.log('Adapted Chrome executor and extracted tool metadata. MCP runtime excluded.');

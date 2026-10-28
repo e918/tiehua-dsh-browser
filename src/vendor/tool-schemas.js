@@ -453,7 +453,7 @@ const TOOLS = [
   {
     name: 'reload',
     description:
-      'Reload the huashu-chrome extension (chrome.runtime.reload()) so an updated build takes effect — ' +
+      'Reload the Tiehua Chrome extension (chrome.runtime.reload()) so an updated build takes effect — ' +
       'no manual chrome://extensions visit needed. ~2s; bridge auto-reconnects, tabs keep state. ' +
       'DISRUPTIVE: the extension is shared by every tab and every other agent session on this machine — ' +
       'anything mid-flight elsewhere gets cut. Only call right after installing/updating, or when ' +

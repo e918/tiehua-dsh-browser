@@ -73,7 +73,7 @@ async function ensureAttached(tabId) {
   if (!(await isEnabled())) {
     throw new L2Unavailable(
       '这一步需要「高保真模式」（浏览器级的真实输入事件），但它被关掉了。'
-      + '让用户点开 huashu-chrome 扩展图标，把「高保真模式」打开，然后重试。');
+      + '让用户点开铁花dsh浏览器助手扩展图标，把「高保真模式」打开，然后重试。');
   }
 
   try {

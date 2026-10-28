@@ -8,8 +8,8 @@
 // 点错的代价在真实登录态下可能是一笔真订单。
 
 (() => {
-  if (window.__huashuChrome) return;
-  window.__huashuChrome = true;
+  if (window.__tiehuaDshBrowser) return;
+  window.__tiehuaDshBrowser = true;
 
   let refMap = new Map();
   let snapshotSeq = 0;
@@ -1096,7 +1096,7 @@
     }
 
     // ①b 各字段的状态。fill 走这条：它没有单一目标，但填进去的每个值都是证据，
-    // 而且是强证据——value 从空变成「花叔」不可能是页面自己动出来的。
+    // 而且是强证据——value 从空变成「铁花」不可能是页面自己动出来的。
     for (const bf of (base.fields || [])) {
       const rec = refMap.get(bf.ref);
       if (!rec) continue;

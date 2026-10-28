@@ -1,6 +1,6 @@
 # App Store Connect：上传之后，怎样真正完成提审
 
-实测：2026-09-08，已登录的真实Chrome，macOS与iOS更新版本；huashu-chrome本机1.1.1。接口与界面可能变化，使用前对照当前network/snapshot。这里不保存账号、App ID、构建ID或审核联系人。
+实测：2026-09-08，已登录的真实Chrome，macOS与iOS更新版本（上游浏览器执行器本机1.1.1）。接口与界面可能变化，使用前对照当前network/snapshot。这里不保存账号、App ID、构建ID或审核联系人。
 
 ## 适用范围与授权
 
